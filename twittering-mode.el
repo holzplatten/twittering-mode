@@ -3759,11 +3759,11 @@ like following:
 	    (when (y-or-n-p "Open authorization URL with browser? (using `browse-url')")
 	      (browse-url authorize-url)))
 	  (let* ((pin
-		  (block pin-input-block
+		  (cl-block pin-input-block
 		    (while t
 		      (let ((pin-input (read-string "Input PIN code: ")))
 			(when (string-match "^\\s-*\\([0-9]+\\)\\s-*$" pin-input)
-			  (return-from pin-input-block
+			  (cl-return-from pin-input-block
 			    (match-string 1 pin-input)))))))
 		 (verifier pin))
 	    (twittering-oauth-exchange-request-token
@@ -11741,7 +11741,7 @@ Pairs of a key symbol and an associated value are following:
     (let ((current-history (nthcdr twittering-edit-local-history-idx
 				   twittering-edit-local-history)))
       (setcar current-history (twittering-edit-extract-status))
-      (decf twittering-edit-local-history-idx)
+      (cl-decf twittering-edit-local-history-idx)
       (twittering-edit-reset-status (nth twittering-edit-local-history-idx
 					 twittering-edit-local-history)))))
 
@@ -11753,7 +11753,7 @@ Pairs of a key symbol and an associated value are following:
     (let ((current-history (nthcdr twittering-edit-local-history-idx
 				   twittering-edit-local-history)))
       (setcar current-history (twittering-edit-extract-status))
-      (incf twittering-edit-local-history-idx)
+      (cl-incf twittering-edit-local-history-idx)
       (twittering-edit-reset-status (nth twittering-edit-local-history-idx
 					 twittering-edit-local-history)))))
 
